@@ -2,6 +2,8 @@ package com.br.domain;
 
 import com.br.domain.Funcionario;
 
+import javax.sound.midi.Soundbank;
+
 public class SistemaRh {
     public static void main(String[] args) {
         Funcionario[] funcionario = new Funcionario[3];
@@ -18,5 +20,21 @@ public class SistemaRh {
         Estagiario estagiario = new Estagiario("Pedro", "EST001", 15);
         estagiario.registrarHoras(35);
         funcionario[2] = estagiario;
+
+        System.out.println("===== Folha de Pagamento =====");
+        double totalFolha = 0;
+
+        for(Funcionario func : funcionario){
+            func.exibirDados();
+            totalFolha += func.calcularSalario();
+            System.out.println("-----------------------------");
+        }
+
+        System.out.println("Total da Folha: R$" + totalFolha);
+
+        System.out.println("\n===== Demonstração de Polimorfismo =====");
+        for(Funcionario func : funcionario){
+            System.out.println(func.calcularSalario());
+        }
     }
 }
